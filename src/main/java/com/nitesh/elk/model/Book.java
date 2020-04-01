@@ -3,7 +3,7 @@ package com.nitesh.elk.model;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.elasticsearch.annotations.Document;
 
-@Document(indexName = "testelk", type = "books")
+@Document(indexName = "mytest", type = "_doc")
 public class Book {
 
     public String getId() {
@@ -18,6 +18,8 @@ public class Book {
 
 	@Id
     private String id;
+	
+	private Integer bid;
 
     private String title;
 
@@ -27,20 +29,34 @@ public class Book {
     
     private float price;
     
-    private String coutry;
+    private String country;
 
     public Book() {
     }
     
     
 
-	public Book(String title, String author, String publication, float price, String coutry) {
+	public Book(String id, Integer bid, String title, String author, String publication, float price, String country) {
 		super();
+		this.id = id;
+		this.bid = bid;
 		this.title = title;
 		this.author = author;
 		this.publication = publication;
 		this.price = price;
-		this.coutry = coutry;
+		this.country = country;
+	}
+
+
+
+	public Integer getBid() {
+		return bid;
+	}
+
+
+
+	public void setBid(Integer bid) {
+		this.bid = bid;
 	}
 
 
@@ -77,18 +93,18 @@ public class Book {
 		this.price = price;
 	}
 
-	public String getCoutry() {
-		return coutry;
+	public String getcountry() {
+		return country;
 	}
 
-	public void setCoutry(String coutry) {
-		this.coutry = coutry;
+	public void setcountry(String country) {
+		this.country = country;
 	}
 
 	@Override
 	public String toString() {
 		return "Book [id=" + id + ", title=" + title + ", author=" + author + ", publication=" + publication
-				+ ", price=" + price + ", coutry=" + coutry + "]";
+				+ ", price=" + price + ", country=" + country + "]";
 	}
 
    

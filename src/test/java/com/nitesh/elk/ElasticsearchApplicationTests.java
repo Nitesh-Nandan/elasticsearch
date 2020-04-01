@@ -22,7 +22,7 @@ class ElasticsearchApplicationTests {
 	
 	@Test
 	public void runTest() {
-		Book book = new Book("tale of two cities",
+		Book book = new Book("1",1,"tale of two cities",
 				"chales dickens", "penguin", 100.50f, "india");
 		
 		var res = bookRepo.save(book);
