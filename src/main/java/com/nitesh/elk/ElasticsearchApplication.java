@@ -7,6 +7,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import com.nitesh.elk.loader.InsertBulkLoader;
 import com.nitesh.elk.loader.InsertLoaderService;
+import com.nitesh.elk.loader.UpdateLoader;
 
 @SpringBootApplication
 public class ElasticsearchApplication implements CommandLineRunner {
@@ -17,6 +18,9 @@ public class ElasticsearchApplication implements CommandLineRunner {
 	
 	@Autowired
 	private InsertBulkLoader insertBulkLoader;
+	
+	@Autowired
+	private UpdateLoader updateLoader;
 
 	public static void main(String[] args) {
 		SpringApplication.run(ElasticsearchApplication.class, args);
@@ -50,6 +54,25 @@ public class ElasticsearchApplication implements CommandLineRunner {
 		
 		
 	}
+	
+	private void collectStatsForUpdate() {
+		
+		int record = 1000;
+		while(record<=100000) {
+			System.out.println("Updating "+ record + " ....");
+			updateLoader.updateRecords(record);
+			
+			if(record<10000) {
+				record+=1000;
+			}
+			else {
+				record+=10000;
+			}
+		}
+		System.out.println("Finished...");
+		
+	}
+
 
 
 	@Override
