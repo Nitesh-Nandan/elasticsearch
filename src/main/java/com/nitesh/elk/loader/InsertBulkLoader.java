@@ -41,21 +41,24 @@ public class InsertBulkLoader {
 		
 		long ttime = 0;
 		int inc = chunkSize;
-		
-		while(inc<=totalSize) {
-			List<Book> books;
-			if(inc+chunkSize>totalSize) {
-				books =  generateDummyObject(startId,totalSize-inc);
-			}
-			books =  generateDummyObject(startId,chunkSize);
+		var tchunk = chunkSize;
+		boolean flag = true;
+		while(inc<=totalSize && flag) {
+			var books =  generateDummyObject(startId,tchunk);
 			long start1 = System.currentTimeMillis();
 			bookRepository.saveAll(books);
 			long end1 = System.currentTimeMillis();
 			ttime+=(end1 - start1);
 			System.out.println("Record Inserted:  "+ inc);
-			startId+=chunkSize;
-			inc+=chunkSize;
+			flag = (tchunk == chunkSize);
 			
+			startId+=chunkSize;
+			if(inc+chunkSize>totalSize) {
+				tchunk = totalSize-inc;
+			}
+			else {
+				inc+=chunkSize;
+			}
 		}
 		
 		System.out.println("Time taken to Insert " + totalSize + " in chunk of " + chunkSize + " is "+

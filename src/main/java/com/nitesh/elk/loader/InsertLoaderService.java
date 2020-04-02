@@ -27,7 +27,7 @@ public class InsertLoaderService {
 		Random rd = new Random();
 		
 		for(int i=startId;i<limit;i++) {
-			var book = new Book(i+"",
+			var book = new Book(
 					i, "book"+i, authorList[i%authorList.length],"publ"+i, 
 					rd.nextFloat()*100, "India"+i );
 			bookRepository.save(book);
