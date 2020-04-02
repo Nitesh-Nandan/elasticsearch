@@ -6,39 +6,26 @@ import org.springframework.data.elasticsearch.annotations.Document;
 @Document(indexName = "mytest", type = "_doc")
 public class Book {
 
-    public String getId() {
-		return id;
-	}
-
-
-
-	public void setId(String id) {
-		this.id = id;
-	}
-
 	@Id
-    private String id;
-	
+	private String id;
+
 	private Integer bid;
 
-    private String title;
+	private String title;
 
-    private String author;
+	private String author;
 
-    private String publication;
-    
-    private float price;
-    
-    private String country;
+	private String publication;
 
-    public Book() {
-    }
-    
-    
+	private float price;
 
-	public Book(String id, Integer bid, String title, String author, String publication, float price, String country) {
+	private String country;
+
+	public Book() {
+	}
+
+	public Book(Integer bid, String title, String author, String publication, float price, String country) {
 		super();
-		this.id = id;
 		this.bid = bid;
 		this.title = title;
 		this.author = author;
@@ -47,19 +34,21 @@ public class Book {
 		this.country = country;
 	}
 
+	public String getId() {
+		return id;
+	}
 
+	public void setId(String id) {
+		this.id = id;
+	}
 
 	public Integer getBid() {
 		return bid;
 	}
 
-
-
 	public void setBid(Integer bid) {
 		this.bid = bid;
 	}
-
-
 
 	public String getTitle() {
 		return title;
@@ -107,5 +96,4 @@ public class Book {
 				+ ", price=" + price + ", country=" + country + "]";
 	}
 
-   
 }
