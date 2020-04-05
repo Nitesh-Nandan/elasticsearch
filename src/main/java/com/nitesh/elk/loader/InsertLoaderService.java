@@ -17,7 +17,7 @@ public class InsertLoaderService {
 	private String[] authorList = {"nitesh","shreya", "arun" , "charan", "rishi"};
 	
 	
-	public void innsertRecord(int startId, int size) {
+	public long innsertRecord(int startId, int size) {
 		
 		
 		System.out.println("Inserting the Records .... ");
@@ -31,6 +31,7 @@ public class InsertLoaderService {
 					i, "book"+i, authorList[i%authorList.length],"publ"+i, 
 					rd.nextFloat()*100, "India"+i );
 			bookRepository.save(book);
+			
 		}
 		
 		long end1 = System.currentTimeMillis();
@@ -41,5 +42,6 @@ public class InsertLoaderService {
 		
 		
 		System.out.println("********Finished******** ");
+		return elapsedTime;
 	}
 }

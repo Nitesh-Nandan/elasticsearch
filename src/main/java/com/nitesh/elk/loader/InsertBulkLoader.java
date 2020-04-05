@@ -34,7 +34,7 @@ public class InsertBulkLoader {
 		return bookList;
 	}
 	
-	public void insertDatainChunk(int totalSize, int chunkSize, int startId) {
+	public long insertDatainChunk(int totalSize, int chunkSize, int startId) {
 		if(chunkSize>totalSize) {
 			throw new IllegalArgumentException("chunk size can't be greater than total size");
 		}
@@ -50,19 +50,23 @@ public class InsertBulkLoader {
 			long end1 = System.currentTimeMillis();
 			ttime+=(end1 - start1);
 			System.out.println("Record Inserted:  "+ inc);
-			flag = (tchunk == chunkSize);
+////			flag = (tchunk == chunkSize);
+//			
+////			startId+=chunkSize;
+////			if(inc+chunkSize>totalSize) {
+////				tchunk = totalSize-inc;
+////			}
+////			else {
+////				inc+=chunkSize;
+////			}
 			
-			startId+=chunkSize;
-			if(inc+chunkSize>totalSize) {
-				tchunk = totalSize-inc;
-			}
-			else {
-				inc+=chunkSize;
-			}
+			inc+=chunkSize;
 		}
 		
 		System.out.println("Time taken to Insert " + totalSize + " in chunk of " + chunkSize + " is "+
 		ttime+ " millis");
+		
+		return ttime;
 		
 	}
 
