@@ -6,15 +6,14 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import com.nitesh.elk.loader.InsertBulkLoader;
-import com.nitesh.elk.loader.InsertLoaderService;
 import com.nitesh.elk.loader.UpdateLoader;
 
 @SpringBootApplication
 public class ElasticsearchApplication implements CommandLineRunner {
 	
 	
-	@Autowired
-	private InsertLoaderService inserLoaderService;
+	//@Autowired
+	//private InsertLoaderService inserLoaderService;
 	
 	@Autowired
 	private InsertBulkLoader insertBulkLoader;
@@ -32,7 +31,7 @@ public class ElasticsearchApplication implements CommandLineRunner {
 		var records = 10;
 		
 		while(records<100000) {
-			inserLoaderService.innsertRecord(currentId, records);
+			//inserLoaderService.innsertRecord(currentId, records);
 			currentId+=records;
 			records*=10;
 		}
@@ -78,7 +77,7 @@ public class ElasticsearchApplication implements CommandLineRunner {
 	@Override
 	public void run(String... args) throws Exception {
 //		collectInsertionStatsOneByOne();
-		collectInsertionStatsInChunk();
+		//collectInsertionStatsInChunk();
 	}
 
 }

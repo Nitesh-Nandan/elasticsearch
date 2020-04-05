@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 import com.nitesh.elk.model.Book;
 import com.nitesh.elk.repo.BookRepository;
 
-@Service
+//@Service
 public class InsertLoaderService {
 
 	@Autowired
